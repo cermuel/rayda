@@ -3,8 +3,15 @@ import logo from "./assets/logo.svg";
 import { AiOutlineLike } from "react-icons/ai";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { RxDotFilled } from "react-icons/rx";
+import Item from "./components/Item";
+import { useEffect } from "react";
+import { getItems } from "./utils/functions";
 
 export default function App() {
+  useEffect(() => {
+    getItems();
+  }, []);
+
   return (
     <main className="bg-[#FCFCFD] w-screen p-8">
       <section className="border-b-[1px] pb-4 flex items-center justify-between border-[#EAECF0] mb-7">
@@ -31,10 +38,10 @@ export default function App() {
           <img
             src={logo}
             alt={"Gradient"}
-            className="absolute bottom-2 h-[50%] rounded-full"
+            className="absolute bottom-2 h-[50%] max-md:h-[30%] max-md:bottom-16 rounded-full"
           />
           <div className="pl-[12%] mt-2">
-            <h1 className="text-[#101828] text-2xl font-semibold">
+            <h1 className="text-[#101828] text-2xl font-semibold max-md:text-base">
               Starts in: 3 days : 2 hours : 24 minutes{" "}
             </h1>
             <div className="flex mt-2 gap-2 items-center">
@@ -46,7 +53,7 @@ export default function App() {
             </div>
           </div>
           <div className="px-3 py-2 mt-2">
-            <div className="flex gap-2 text-sm items-center text-[#344054] font-semibold rounded-lg border-[1px] border-[#344054] px-4 py-2">
+            <div className="flex gap-2 max-md:gap-0 max-md:text-[10px] max-md:font-normal max-md:justify-center text-sm items-center text-[#344054] font-semibold rounded-lg border-[1px] border-[#344054] px-4 py-2 max-md:p-1 max-md:w-[90px]">
               <AiOutlineLike />
               Accept Invite
             </div>
@@ -54,7 +61,26 @@ export default function App() {
         </div>
       </section>
       <section className="rounded-xl border-[1px] border-[#EAECF0] px-4 py-8">
-        <div className="flex justify-between items-center"></div>
+        <div className="flex justify-between items-center pb-8 border-b-[1px] border-[#EAECF0]">
+          <h1 className="text-[#101828] text-lg font-semibold">
+            Featured Items
+          </h1>
+          <div className="border-[1px] text-[#101828] border-[#D0D5DD] rounded-lg py-2 px-4 text-sm font-semibold">
+            View Auction
+          </div>
+        </div>
+        <div className="flex flex-wrap max-md:justify-center justify-between gap-2 my-6">
+          <Item />
+          <Item />
+          <Item />
+          <Item /> <Item />
+          <Item />
+          <Item />
+          <Item /> <Item />
+          <Item />
+          <Item />
+          <Item />
+        </div>
       </section>
     </main>
   );
