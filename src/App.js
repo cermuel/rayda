@@ -4,12 +4,13 @@ import { AiOutlineLike } from "react-icons/ai";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { RxDotFilled } from "react-icons/rx";
 import Item from "./components/Item";
-import { useEffect } from "react";
+import { useLayoutEffect, useState } from "react";
 import { getItems } from "./utils/functions";
 
 export default function App() {
-  useEffect(() => {
-    getItems();
+  const [items, setItems] = useState();
+  useLayoutEffect(() => {
+    getItems(setItems);
   }, []);
 
   return (
@@ -70,16 +71,16 @@ export default function App() {
           </div>
         </div>
         <div className="flex flex-wrap max-md:justify-center justify-between gap-2 my-6">
-          <Item />
-          <Item />
-          <Item />
-          <Item /> <Item />
-          <Item />
-          <Item />
-          <Item /> <Item />
-          <Item />
-          <Item />
-          <Item />
+          {items?.map((item) => {
+            return (
+              <Item
+                name={item.name}
+                bid={item.bid}
+                image={item.image}
+                title={item.title}
+              />
+            );
+          })}
         </div>
       </section>
     </main>
